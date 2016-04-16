@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Itracker">
+<html lang="en" ng-app="ITracker">
     <head>
-        <title>Issue Tracker</title>
         <meta charset="UTF-8">
+        <base href="/" target="_blank, _self, _parent, _top">
+        <title>Issue Tracker</title>
         <!--<link href="css/style.css" rel="stylesheet">-->
+
+        <!-- TODO: Chance scripts to their minified versions -->
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
     </head>
-    <body>
-    
+    <body ng-cloak>
+    	<div ng-view></div>
+
+		<!-- APP -->
+    	<script src="/app/js/app.js"></script>
     </body>
 </html>
