@@ -1,0 +1,9 @@
+{
+    "clearUrls": true,
+    "rewrites": [
+        {
+            "source": "/**",
+            "destination": "app/index.html"
+        }
+    ]
+}
