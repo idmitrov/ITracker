@@ -15,19 +15,26 @@
 
         <title>Issue Tracker</title>
 
-        <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Styles -->
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
+        <!-- Libs -->
         <!-- TODO: Chance scripts to their minified versions -->
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/noty/js/noty/jquery.noty.js"></script>
+        
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="/bower_components/noty/js/noty/jquery.noty.js"></script>
     </head>
-    <body ng-cloak>
+    <body class="container-fluid" ng-cloak>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+
+        <div ng-controller="IdentityController" main-navigation></div>
     	<div ng-view></div>
 
 		<!-- APP -->
@@ -39,5 +46,8 @@
 
         <!-- CONTROLLERS -->
         <script src="/app/js/controllers/identityController.js"></script>
+        
+        <!-- DIRECTIVES -->
+        <script src="/app/js/directives/mainNavigationDirective.js"></script>
     </body>
 </html>
