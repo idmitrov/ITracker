@@ -2,8 +2,10 @@
 	'use strict';
 
 	function config($routeProvider, $locationProvider) {
+		// Enable HTML5 Routing
 		$locationProvider.html5Mode(true);
 
+		// Routes
 		$routeProvider
 			.when('/', {
 				'templateUrl': '/app/views/home.html',
