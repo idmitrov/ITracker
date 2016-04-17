@@ -1,5 +1,5 @@
 (function() {
-	function requestingrService($q, $http) {
+	function requestingService($q, $http) {
 		return function(method, url, headers, data) {
 			var deferred = $q.defer();
 
@@ -18,5 +18,5 @@
 
 	angular
 		.module('ITracker')
-		.factory('requestingrService', ['$q', '$http', requestingrService]);
+		.factory('requestingService', ['$q', '$http', requestingService]);
 } ());
