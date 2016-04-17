@@ -1,23 +1,61 @@
 (function() {
 	'use strict';
 
-	function IdentityController($scope, $cookies) {
-		var vm = this,
+	function IdentityController($cookies, identityService, notifyingService) {
+		var controller = this,
 			defaultAction = 'login',
-			show = function(action) {
-				vm.action = action || defaultAction;		
+			_createLoginRequest = function(data) {
+				function successHandler(successData) {
+					notifyingService.success('Welcome ' + data.username)
+				}
+
+				function errorHandler(errorData) {
+					notifyingService.error(errorData.error_description);
+				}
+
+				identityService.login(data)
+					.then(successHandler, errorHandler);
 			},
+			/**
+			*	@name Show
+			*	@desc Show Register/Login form depends of the action
+			*	@param {String} action
+			*/
+			show = function(action) {
+				controller.action = action || defaultAction;		
+			},
+			/**
+			*	@name Login
+			*	@desc Call identity Login
+			*	@param {Object} loginData
+			*	@param {Object} loginForm
+			*/
 			login = function(loginData, loginForm) {
-				console.log(loginData, loginForm);
+				if (loginForm.$valid) {
+					_createLoginRequest(loginData);
+				}
+			},
+			/**
+			*	@name Register
+			*	@desc Call identity Register and if register success
+			*	then call identity Login to login user
+			*	@param {Object} registerData
+			*	@param {Object} registerForm
+			*/
+			register = function(registerData, registerForm) {
+				if (registerForm.$valid) {
+
+				}
 			};
 
-		vm.action = defaultAction;
-		vm.show = show;
-		vm.login = login;
+		controller.action = defaultAction;
+		controller.show = show;
+		controller.login = login;
+		controller.register = register;
 	}
 
 	angular
 		.module('ITracker')
-		.controller('IdentityController', ['$scope', '$cookies', IdentityController]);
+		.controller('IdentityController', ['$cookies', 'identityService', 'notifyingService', IdentityController]);
 } ());
 
