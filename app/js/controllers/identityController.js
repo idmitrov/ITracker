@@ -4,8 +4,20 @@
 	function IdentityController($cookies, identityService, notifyingService) {
 		var controller = this,
 			defaultAction = 'login',
-			_createLoginRequest = function(data) {
-				function successHandler(successData) {
+			_saveCookies = function(obj) {
+				$cookies.put('itracker', JSON.stringify(obj));
+			},
+			_getCookies = function() {
+				return JSON.parse($cookies.get('itracker'));
+			},
+			_makeLoginRequest = function(data) {
+				function successHandler(successData) {			
+					var cookies = {
+						token: successData.access_token,
+						username: successData.userName
+					}
+
+					_saveCookies(cookies);
 					notifyingService.success('Welcome ' + data.username)
 				}
 
@@ -32,7 +44,7 @@
 			*/
 			login = function(loginData, loginForm) {
 				if (loginForm.$valid) {
-					_createLoginRequest(loginData);
+					_makeLoginRequest(loginData);
 				}
 			},
 			/**
@@ -44,7 +56,22 @@
 			*/
 			register = function(registerData, registerForm) {
 				if (registerForm.$valid) {
+					function successHandler(successData) {
+						var credentials = {
+							username: registerData.email,
+							password: registerData.password
+						}
 
+						_makeLoginRequest(credentials);
+					}
+
+					function errorHandler(errorData) {
+						console.log(errorData);
+						notifyingService.error(errorData);
+					}
+
+					identityService.register(registerData)
+						.then(successHandler, errorHandler);
 				}
 			};
 

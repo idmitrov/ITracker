@@ -1,8 +1,8 @@
 <form name="registerForm" action="#" method="post" accept-charset="utf-8">
-	<div class="input-group" ng-class="{'has-error': registerForm.username.$invalid}">
-		<label class="input-group-addon" for="register-username">Email</label>
+	<div class="input-group" ng-class="{'has-error': registerForm.email.$invalid}">
+		<label class="input-group-addon" for="register-email">Email</label>
 		
-		<input id="register-username" class="form-control" type="email" name="username" placeholder="Email" required ng-model="user.username"></input>
+		<input id="register-email" class="form-control" type="email" name="email" placeholder="Email" required ng-model="user.email"></input>
 	</div>
 	
 	<div class="input-group" ng-class="{'has-error': registerForm.password.$invalid}">
