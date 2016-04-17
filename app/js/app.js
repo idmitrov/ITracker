@@ -21,6 +21,7 @@
 	*	@desc Issue Tracking System
 	*/
 	angular
-		.module('ITracker', ['ngRoute'])
+		.module('ITracker', ['ngRoute', 'ngCookies'])
+		.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/api/')
 		.config(['$routeProvider', '$locationProvider', config]);
 } ());
