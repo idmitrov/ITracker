@@ -1,4 +1,6 @@
 (function() {
+	'use strict';
+
 	function identityService(requestingService, baseUrl) {
 		var _serviceUrl = baseUrl + 'account/',
 			service = {};
