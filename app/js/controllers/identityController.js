@@ -8,4 +8,5 @@
 	angular
 		.module('ITracker')
 		.controller('IdentityController', ['$scope', IdentityController]);
-});
+} ());
+

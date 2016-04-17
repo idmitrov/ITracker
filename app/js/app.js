@@ -6,12 +6,11 @@
 
 		$routeProvider
 			.when('/', {
-				// "templateUrl": null,
-				// "controller": null,
-				// "controllerAs": null
+				'templateUrl': '/app/views/home.html',
+				'controller': 'IdentityController'
 			})
 			.otherwise({
-				"redirectTo": "/"
+				'redirectTo': '/'
 			});
 	}
 
