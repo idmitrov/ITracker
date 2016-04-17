@@ -9,7 +9,8 @@
 		$routeProvider
 			.when('/', {
 				'templateUrl': '/app/views/home.html',
-				'controller': 'IdentityController'
+				'controller': 'IdentityController',
+				'controllerAs': 'identity'
 			})
 			.otherwise({
 				'redirectTo': '/'

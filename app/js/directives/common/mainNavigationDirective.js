@@ -3,7 +3,7 @@
 		var directive = {};
 
 		directive.restrict = 'AE';
-		directive.templateUrl = '/app/views/partials/mainNavigation.html',
+		directive.templateUrl = '/app/views/partials/common/mainNavigation.html',
 		directive.replace = true;
 
 		return directive;
