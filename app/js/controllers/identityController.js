@@ -3,7 +3,7 @@
 
 	function IdentityController($cookies, identityService, notifyingService) {
 		var controller = this,
-			defaultAction = 'login',
+			_defaultAction = 'login',
 			_saveCookies = function(obj) {
 				$cookies.put('itracker', JSON.stringify(obj));
 			},
@@ -12,13 +12,12 @@
 			},
 			_makeLoginRequest = function(data) {
 				function successHandler(successData) {			
-					var cookies = {
+					_saveCookies({
 						token: successData.access_token,
 						username: successData.userName
-					}
+					});
 
-					_saveCookies(cookies);
-					notifyingService.success('Welcome ' + data.username)
+					notifyingService.success('Welcome ' + successData.userName);
 				}
 
 				function errorHandler(errorData) {
@@ -32,15 +31,19 @@
 			*	@name Show
 			*	@desc Show Register/Login form depends of the action
 			*	@param {String} action
+			*	
+			*	@return void
 			*/
 			show = function(action) {
-				controller.action = action || defaultAction;		
+				controller.action = action || _defaultAction;		
 			},
 			/**
 			*	@name Login
 			*	@desc Call identity Login
 			*	@param {Object} loginData
 			*	@param {Object} loginForm
+			*	
+			*	@return void
 			*/
 			login = function(loginData, loginForm) {
 				if (loginForm.$valid) {
@@ -53,19 +56,20 @@
 			*	then call identity Login to login user
 			*	@param {Object} registerData
 			*	@param {Object} registerForm
+			*	
+			*	@return void
 			*/
 			register = function(registerData, registerForm) {
 				if (registerForm.$valid) {
 					function successHandler(successData) {
-						var credentials = {
+						_makeLoginRequest({
 							username: registerData.email,
 							password: registerData.password
-						}
-
-						_makeLoginRequest(credentials);
+						});
 					}
 
 					function errorHandler(errorData) {
+						// TODO: Implement ModelState Error(s) Parse
 						console.log(errorData);
 						notifyingService.error(errorData);
 					}
@@ -75,7 +79,7 @@
 				}
 			};
 
-		controller.action = defaultAction;
+		controller.action = _defaultAction;
 		controller.show = show;
 		controller.login = login;
 		controller.register = register;
