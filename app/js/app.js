@@ -17,6 +17,12 @@
 			});
 	}
 
+	function run($rootScope, identityService) {
+		$rootScope.$on('$routeChangeStart', function(event, next, current) {
+			console.log(identityService.isLoggedIn());
+		})
+	}
+
 	/**
 	*	@name ITracker
 	*	@desc Issue Tracking System
@@ -24,5 +30,6 @@
 	angular
 		.module('ITracker', ['ngRoute', 'ngCookies'])
 		.constant('BASE_URL', 'http://softuni-issue-tracker.azurewebsites.net/api/')
-		.config(['$routeProvider', '$locationProvider', config]);
+		.config(['$routeProvider', '$locationProvider', config])
+		.run(['$rootScope', 'identityService', run]);
 } ());
