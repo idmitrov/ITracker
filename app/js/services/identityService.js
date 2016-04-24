@@ -12,7 +12,7 @@
 				var cookies = $cookies.get('itracker');
 
 				if (cookies) {
-					JSON.parse(cookies);
+					cookies = JSON.parse(cookies);
 
 					if (!propName) {
 						return cookies;
@@ -75,7 +75,7 @@
 				credentials = _getCookies();
 				this._credentialsCache = credentials;
 			}
-			
+
 			return credentials;
 		};
 
