@@ -4,6 +4,7 @@
 	function identityService(requestingService, baseUrl, $cookies) {
 		var _serviceUrl = baseUrl + 'account/',
 			service = {},
+			_credentialsCache,
 			_saveCookies = function(cookiesObj) {
 				$cookies.put('itracker', JSON.stringify(cookiesObj));
 			},
@@ -50,6 +51,7 @@
 		*/
 		service.saveCredentials = function(credentials) {
 			_saveCookies(credentials);
+			this._credentialsCache = credentials;
 		};
 
 		/**
@@ -59,7 +61,14 @@
 		*	@return {Object} credentials
 		*/
 		service.getCredentials = function() {
-			var credentials = _getCookies();
+			var credentials;
+
+			if (this._credentialsCache) {
+				credentials = this._credentialsCache;
+			} else {
+				credentials = _getCookies();
+				this._credentialsCache = credentials;
+			}
 			
 			return credentials;
 		};
@@ -68,10 +77,23 @@
 		*	@name isLoggedIn
 		*	@desc Check if given user is logged
 		*
-		*	@return void
+		*	@return {Boolean} isLogged
 		*/
 		service.isLoggedIn = function() {
-			var isLogged = _getCookies() === undefined ? false : true;
+			var	isLogged;
+
+			if(this._credentialsCache) {
+				isLogged = true;
+			} else {
+				var credentials = this.getCredentials();
+
+				if (credentials) {
+					isLogged = true;
+					this._credentialsCache = credentials;
+				} else {
+					isLogged = false;
+				}
+			}
 
 			return isLogged;
 		};
