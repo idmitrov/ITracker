@@ -1,18 +1,12 @@
 (function() {
 	'use strict';
 
-	function IdentityController($cookies, identityService, notifyingService) {
+	function IdentityController(identityService, notifyingService) {
 		var controller = this,
 			_defaultAction = 'login',
-			_saveCookies = function(obj) {
-				$cookies.put('itracker', JSON.stringify(obj));
-			},
-			_getCookies = function() {
-				return JSON.parse($cookies.get('itracker'));
-			},
 			_makeLoginRequest = function(data) {
 				function successHandler(successData) {			
-					_saveCookies({
+					identityService.saveCredentials({
 						token: successData.access_token,
 						username: successData.userName
 					});
@@ -36,6 +30,15 @@
 			*/
 			show = function(action) {
 				controller.action = action || _defaultAction;		
+			},
+			/**
+			*	@name IsLoggedIn
+			*	@desc Check for logged user
+			*	
+			*	@return void
+			*/
+			isLoggedIn = function() {
+				identityService.isLoggedIn();
 			},
 			/**
 			*	@name Login
@@ -83,10 +86,11 @@
 		controller.show = show;
 		controller.login = login;
 		controller.register = register;
+		controller.isLoggedIn = isLoggedIn;
 	}
 
 	angular
 		.module('ITracker')
-		.controller('IdentityController', ['$cookies', 'identityService', 'notifyingService', IdentityController]);
+		.controller('IdentityController', ['identityService', 'notifyingService', IdentityController]);
 } ());
 
