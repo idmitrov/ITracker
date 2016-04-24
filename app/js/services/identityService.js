@@ -9,12 +9,18 @@
 				$cookies.put('itracker', JSON.stringify(cookiesObj));
 			},
 			_getCookies = function(propName) {
-				var cookies = JSON.parse($cookies.get('itracker'));
+				var cookies = $cookies.get('itracker');
 
-				if (!propName) {
-					return cookies;
+				if (cookies) {
+					JSON.parse(cookies);
+
+					if (!propName) {
+						return cookies;
+					} else {
+						return cookies[propName];
+					}
 				} else {
-					return cookies[propName];
+					// TODO Throw no cookies found
 				}
 			};
 
@@ -80,20 +86,7 @@
 		*	@return {Boolean} isLogged
 		*/
 		service.isLoggedIn = function() {
-			var	isLogged;
-
-			if(this._credentialsCache) {
-				isLogged = true;
-			} else {
-				var credentials = this.getCredentials();
-
-				if (credentials) {
-					isLogged = true;
-					this._credentialsCache = credentials;
-				} else {
-					isLogged = false;
-				}
-			}
+			var isLogged = this.getCredentials() === undefined ? false : true;
 
 			return isLogged;
 		};

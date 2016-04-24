@@ -1,9 +1,17 @@
 <div class="jumbotron">
-	<p>Welcome to <strong>ITracker</strong>, The easy communication between Client - Developer, try it now its free!</p>
+	<p>
+		Welcome to 
+		<strong>ITracker</strong>, 
+		The easy communication between Client - Developer, try it now its free!
+	</p>
 	
 	<button class="btn btn-primary" type="button" title="Login" ng-click="identity.show('login')">Login</button>
 	<button class="btn btn-success" type="button" title="Register" ng-click="identity.show('register')">Register</button>
 
 	<div ng-show="identity.action=='login'" login-form></div>
 	<div ng-show="identity.action=='register'" register-form></div>
+</div>
+
+<div>
+	Dashboard
 </div>
