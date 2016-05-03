@@ -1,0 +1,13 @@
+<div ng-if="!home.isLoggedIn">
+    <h2>Welcome</h2>
+
+    <button class="btn btn-primary" ng-click="home.show('login')">Login</button>
+    <button class="btn btn-success" ng-click="home.show('register')">Register</button>
+
+    <div ng-show="home.action=='login'" login-form></div>
+    <div ng-show="home.action=='register'" register-form></div>
+</div>
+
+<div ng-if="home.isLoggedIn">
+    <h2>Dashboard</h2>
+</div>

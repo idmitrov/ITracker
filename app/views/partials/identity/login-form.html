@@ -1,0 +1,13 @@
+<form name="loginForm" action="#" method="post">
+    <div class="input-group" ng-class="{'has-success': loginForm.email.$valid, 'has-error': loginForm.email.$invalid}">
+        <label class="input-group-addon" for="login-email">Email</label>
+        <input id="login-email" class="form-control" name="email" type="email" placeholder="email@example.com" required ng-model="loginData.email">
+    </div>
+
+    <div class="input-group" ng-class="{'has-success': loginForm.password.$valid, 'has-error': loginForm.password.$invalid}">
+        <label class="input-group-addon" for="login-password">Password</label>
+        <input id="login-password" class="form-control" name="password" type="password" placeholder="0-9a-zA-Z" required pattern=".{1,}" ng-model="loginData.password">
+    </div>
+
+    <button class="btn btn-primary" type="button" ng-disabled="loginForm.$invalid" ng-click="login(loginData, loginForm)">Login Now</button>
+</form>
