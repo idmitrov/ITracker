@@ -9,7 +9,7 @@
     };
 
     /**
-     *  @name routeConfig
+     *  @name appConfig
      *  @desc Config Routes
      *
      *  @param $routeProvider
@@ -19,9 +19,9 @@
      *
      *  @return void
      */
-    function routeConfig($routeProvider, $locationProvider, $httpProvider, ngToastProvider) {
+    function appConfig($routeProvider, $locationProvider, $httpProvider, ngToastProvider) {
         ngToastProvider.configure({
-            animation: 'fade', // or 'fade',
+            animation: 'fade',
             dismissButton: true,
             verticalPosition: 'bottom',
             horizontalPosition: 'center'
@@ -55,9 +55,6 @@
                         errorMessages.forEach(function(message) {
                             ngToast.danger(message);
                         });
-                        //ngToast.danger({
-                        //    content: errorMessage
-                        //});
                     });
                 }
 
@@ -85,6 +82,6 @@
     angular
         .module('ITracker', ['ngRoute', 'ngCookies', 'ngToast'])
         .constant('APP_CONFIGS', _appConfigs)
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngToastProvider', routeConfig])
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngToastProvider', appConfig])
         .run();
 }());
