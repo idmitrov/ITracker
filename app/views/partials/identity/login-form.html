@@ -6,7 +6,7 @@
 
     <div class="input-group" ng-class="{'has-success': loginForm.password.$valid, 'has-error': loginForm.password.$invalid}">
         <label class="input-group-addon" for="login-password">Password</label>
-        <input id="login-password" class="form-control" name="password" type="password" placeholder="0-9a-zA-Z" required pattern=".{1,}" ng-model="loginData.password">
+        <input id="login-password" class="form-control" name="password" type="password" placeholder="0-9a-zA-Z" required pattern=".{6,}" ng-model="loginData.password">
     </div>
 
     <button class="btn btn-primary" type="button" ng-disabled="loginForm.$invalid" ng-click="login(loginData, loginForm)">Login Now</button>

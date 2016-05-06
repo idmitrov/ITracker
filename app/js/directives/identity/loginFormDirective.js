@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function loginForm() {
+    function loginForm(ngToast) {
         var directive = {};
 
         directive.restrict = 'AE';
@@ -13,7 +13,7 @@
                 if (loginForm.$valid) {
                     controller.login(loginData);
                 } else {
-                    // TODO: Notification
+                    ngToast.danger('There is a problem with your request');
                 }
             };
         };
@@ -23,5 +23,5 @@
 
     angular
         .module('ITracker')
-        .directive('loginForm', [loginForm]);
+        .directive('loginForm', ['ngToast', loginForm]);
 } ());
