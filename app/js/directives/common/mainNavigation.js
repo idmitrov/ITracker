@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function mainNavigation(identityService) {
+    function mainNavigation(identityService, ngToast) {
         var directive = {};
 
         directive.restrict = 'AE';
@@ -9,7 +9,12 @@
         directive.replace = true;
         directive.link = function(scope) {
             scope.isLoggedIn = identityService.isLoggedIn;
-            scope.logout = identityService.logout;
+
+
+            scope.logout = function() {
+                identityService.logout();
+                ngToast.success('Logout Success');
+            };
         };
 
         return directive;
@@ -17,5 +22,5 @@
 
     angular
         .module('ITracker')
-        .directive('mainNavigation', ['identityService', mainNavigation]);
+        .directive('mainNavigation', ['identityService', 'ngToast', mainNavigation]);
 } ());
