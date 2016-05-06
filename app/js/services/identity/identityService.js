@@ -3,8 +3,14 @@
 
     function IdentityService(credentialService, requestService, APP_CONFIGS) {
         var service = {},
-            _serviceEndPoint = APP_CONFIGS.service.baseUrl + 'account/';
+            _serviceEndpoint = APP_CONFIGS.service.baseUrl + 'account/';
 
+        /**
+         *  @name isLoggedIn
+         *  @desc Return true/false if user is logged in
+         *
+         *  @returns {boolean}
+         */
         service.isLoggedIn = function() {
             return !!credentialService.getCredentials();
         };
@@ -12,7 +18,8 @@
         /**
          *  @name login
          *  @desc login an existing user
-         *  @param loginCredentials
+         *  @param {Object} loginCredentials
+         *
          *  @returns {*|HttpPromise}
          */
         service.login = function(loginCredentials) {
@@ -25,16 +32,18 @@
         /**
          *  @name register
          *  @desc Register new user
-         *  @param registerCredentials
+         *  @param {Object} registerCredentials
+         *
          *  @returns {*|HttpPromise}
          */
         service.register = function(registerCredentials) {
-            return requestService.post(_serviceEndPoint + 'register', registerCredentials, null);
+            return requestService.post(_serviceEndpoint + 'register', registerCredentials, null);
         };
 
         /**
          *  @name logout
          *  @desc Logout an existing user
+         *
          *  @return void
          */
         service.logout = function() {
