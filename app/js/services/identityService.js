@@ -3,7 +3,7 @@
 
     function IdentityService(credentialService, requestService, APP_CONFIGS) {
         var service = {},
-            _serviceEndPont = APP_CONFIGS.service.baseUrl + 'account/';
+            _serviceEndPoint = APP_CONFIGS.service.baseUrl + 'account/';
 
         service.isLoggedIn = function() {
             return !!credentialService.getCredentials();
@@ -22,10 +22,21 @@
             return requestService.post(APP_CONFIGS.service.baseUrl + 'token', credentials, headers);
         };
 
+        /**
+         *  @name register
+         *  @desc Register new user
+         *  @param registerCredentials
+         *  @returns {*|HttpPromise}
+         */
         service.register = function(registerCredentials) {
-            return requestService.post(_serviceEndPont + 'register', registerCredentials, null);
+            return requestService.post(_serviceEndPoint + 'register', registerCredentials, null);
         };
 
+        /**
+         *  @name logout
+         *  @desc Logout an existing user
+         *  @return void
+         */
         service.logout = function() {
             credentialService.destroyCredentials();
         };
@@ -35,5 +46,5 @@
 
     angular
         .module('ITracker')
-        .service('identityService', ['credentialService', 'requestService', 'APP_CONFIGS', IdentityService]);
+        .factory('identityService', ['credentialService', 'requestService', 'APP_CONFIGS', IdentityService]);
 }());

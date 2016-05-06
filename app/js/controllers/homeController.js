@@ -6,6 +6,7 @@
             _defaultActiveForm = 'login';
 
         controller.activeForm = _defaultActiveForm;
+
         controller.toggleActiveForm = function(formName) {
             controller.activeForm = formName || _defaultActiveForm;
         };
@@ -14,10 +15,8 @@
             return formName === controller.activeForm;
         };
 
-        // IsLoggedIn
         controller.isLoggedIn = identityService.isLoggedIn;
 
-        // Login
         controller.login = function(loginData) {
             function successHandler(successData) {
                 console.log('Welcome ' + successData.userName);
@@ -29,7 +28,6 @@
                 .then(successHandler);
         };
 
-        // Register
         controller.register = function(registerData) {
             var self = this;
 
@@ -37,12 +35,8 @@
                 self.login(registerData);
             }
 
-            function errorHandler(errorData) {
-                //console.log(errorData);
-            }
-
             identityService.register(registerData)
-                .then(successHandler, errorHandler);
+                .then(successHandler);
         };
     }
 
