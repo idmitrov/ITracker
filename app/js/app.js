@@ -1,6 +1,13 @@
 (function () {
     'use strict';
 
+    var _appConfigs = {
+        appName: 'ITracker',
+        service: {
+            baseUrl: 'http://softuni-issue-tracker.azurewebsites.net/api/'
+        }
+    };
+
     /**
      *  @name routeConfig
      *  @desc Config Routes
@@ -8,16 +15,24 @@
      *  @param $routeProvider
      *  @param $locationProvider
      *  @param $httpProvider
-     *  @param $q
+     *  @param ngToastProvider
      *
      *  @return void
      */
-    function routeConfig($routeProvider, $locationProvider, $httpProvider) {
+    function routeConfig($routeProvider, $locationProvider, $httpProvider, ngToastProvider) {
+        ngToastProvider.configure({
+            animation: 'fade', // or 'fade',
+            dismissButton: true,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'center'
+        });
+
         /**
          *  @param $q
+         *  @param ngToast
          *  @returns {Object}
          */
-        function httpNotificationInterceptor($q) {
+        function httpNotificationInterceptor($q, ngToast) {
             var interceptor = {};
 
             interceptor.response = function(response) {
@@ -27,14 +42,22 @@
             interceptor.responseError = function(rejection) {
                 if (rejection.data && rejection.data.error_description) {
                     var errorMessage = rejection.data.error_description;
-                    console.log(errorMessage);
+
+                    ngToast.danger(errorMessage);
                 }
 
                 if (rejection.data && rejection.data.ModelState) {
                     var errors = Object.keys(rejection.data.ModelState);
 
                     errors.forEach(function(error) {
-                        console.log(rejection.data.ModelState[error]);
+                        var errorMessages = rejection.data.ModelState[error];
+
+                        errorMessages.forEach(function(message) {
+                            ngToast.danger(message);
+                        });
+                        //ngToast.danger({
+                        //    content: errorMessage
+                        //});
                     });
                 }
 
@@ -56,24 +79,12 @@
                 redirectTo: '/'
             });
 
-        // TODO: Create interceptor in better way and notify errors
-        $httpProvider.interceptors.push(['$q', httpNotificationInterceptor]);
+        $httpProvider.interceptors.push(['$q', 'ngToast', httpNotificationInterceptor]);
     }
 
-    /**
-     * @type {{appName: string, service: {baseUrl: string}}}
-     * @private
-     */
-    var _appConfigs = {
-        appName: 'ITracker',
-        service: {
-            baseUrl: 'http://softuni-issue-tracker.azurewebsites.net/api/'
-        }
-    };
-
     angular
-        .module('ITracker', ['ngRoute', 'ngCookies'])
+        .module('ITracker', ['ngRoute', 'ngCookies', 'ngToast'])
         .constant('APP_CONFIGS', _appConfigs)
-        .config(['$routeProvider', '$locationProvider', '$httpProvider', routeConfig])
+        .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngToastProvider', routeConfig])
         .run();
 }());
