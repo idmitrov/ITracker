@@ -1,16 +1,20 @@
 (function () {
     'use strict';
 
-    function HomeController($scope, identityService, credentialService) {
+    function HomeController(identityService, credentialService) {
         var controller = this,
-            _defaultAction = 'login';
+            _defaultActiveForm = 'login';
 
-        controller.action = _defaultAction;
-
-        controller.show = function(action) {
-            controller.action = action || _defaultAction;
+        controller.activeForm = _defaultActiveForm;
+        controller.toggleActiveForm = function(formName) {
+            controller.activeForm = formName || _defaultActiveForm;
         };
 
+        controller.isActiveForm = function(formName) {
+            return formName === controller.activeForm;
+        };
+
+        // IsLoggedIn
         controller.isLoggedIn = identityService.isLoggedIn;
 
         // Login
@@ -44,5 +48,5 @@
 
     angular
         .module('ITracker')
-        .controller('HomeController', ['$scope', 'identityService', 'credentialService', HomeController]);
+        .controller('HomeController', ['identityService', 'credentialService', HomeController]);
 } ());
