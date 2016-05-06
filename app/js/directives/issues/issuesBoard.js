@@ -8,7 +8,12 @@
         directive.replace = true;
         directive.templateUrl = '/app/views/partials/issues/issues-board.html';
         directive.link = function(scope) {
-            scope.getAll = issuesService.getAll;
+            function getIssuesSuccessHandler(successData) {
+                console.log(successData);
+            }
+
+            scope.myIssues = issuesService.getMyIssues()
+                .then(getIssuesSuccessHandler);
         };
 
         return directive;
