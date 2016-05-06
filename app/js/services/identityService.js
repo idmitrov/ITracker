@@ -27,7 +27,7 @@
         };
 
         service.logout = function() {
-            console.log('logout');
+            credentialService.destroyCredentials();
         };
 
         return service;

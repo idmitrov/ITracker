@@ -13,7 +13,6 @@
         service.getCredentials = function() {
             var credentials = $cookies.get('_ITracker');
 
-            console.log(credentials);
             if (credentials) {
                 credentials = JSON.parse(credentials);
             }
@@ -31,10 +30,10 @@
         };
 
         /**
-         *  @name deleteCredentials
+         *  @name destroyCredentials
          *  @desc Cleanup cookies
          */
-        service.deleteCredentials = function() {
+        service.destroyCredentials = function() {
             $cookies.remove('_ITracker');
         };
 

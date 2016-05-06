@@ -8,7 +8,8 @@
         directive.templateUrl = '/app/views/partials/common/main-navigation.html';
         directive.replace = true;
         directive.link = function(scope) {
-            scope.isLoggedIn = identityService.isLoggedIn();
+            scope.isLoggedIn = identityService.isLoggedIn;
+            scope.logout = identityService.logout;
         };
 
         return directive;
