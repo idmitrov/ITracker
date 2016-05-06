@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function HomeController(identityService) {
+    function HomeController(identityService, credentialService) {
         var controller = this,
             _defaultAction = 'login';
 
@@ -11,12 +11,14 @@
             controller.action = action || _defaultAction;
         };
 
-        controller.isLoggedIn = identityService.isLoggedIn();
+        //controller.isLoggedIn = identityService.isLoggedIn();
 
         // Login
         controller.login = function(loginData) {
             function successHandler(successData) {
                 console.log('Welcome ' + successData.userName);
+
+                credentialService.saveCredentials(successData);
             }
 
             function errorHandler(errorData) {
@@ -46,5 +48,5 @@
 
     angular
         .module('ITracker')
-        .controller('HomeController', ['identityService', HomeController]);
+        .controller('HomeController', ['identityService', 'credentialService', HomeController]);
 } ());

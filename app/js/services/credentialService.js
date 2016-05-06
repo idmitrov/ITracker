@@ -27,7 +27,7 @@
          *  @param credentialsObject
          */
         service.saveCredentials = function(credentialsObject) {
-            $cookies.set('_ITracker', JSON.stringify(credentialsObject));
+            $cookies.put('_ITracker', JSON.stringify(credentialsObject));
         };
 
         /**
