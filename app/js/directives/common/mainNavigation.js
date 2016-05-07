@@ -1,23 +1,18 @@
 (function () {
     "use strict";
 
-    function mainNavigation(identityService, ngToast) {
+    function mainNavigation($route, identityService, ngToast) {
         var directive = {};
 
         directive.restrict = 'AE';
         directive.templateUrl = '/app/views/partials/common/main-navigation.html';
         directive.replace = true;
-        directive.link = function(scope, element) {
-            scope.setAsActive = function() {
-                //element.find('.navbar-nav a').removeClass('active');
-                //element.addClass('active');
-            };
-
+        directive.link = function(scope) {
             scope.isLoggedIn = identityService.isLoggedIn;
-
 
             scope.logout = function() {
                 identityService.logout();
+                $route.reload();
                 ngToast.success('Logout Success');
             };
         };
@@ -27,5 +22,5 @@
 
     angular
         .module('ITracker')
-        .directive('mainNavigation', ['identityService', 'ngToast', mainNavigation]);
+        .directive('mainNavigation', ['$route', 'identityService', 'ngToast', mainNavigation]);
 } ());

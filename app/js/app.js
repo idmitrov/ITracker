@@ -8,6 +8,14 @@
         }
     };
 
+    function run($rootScope, $location, identityService) {
+        $rootScope.$on('$routeChangeStart', function() {
+            if (!identityService.isLoggedIn()) {
+                $location.path('/');
+            }
+        });
+    }
+
     /**
      *  @name appConfig
      *  @desc Config Routes
@@ -88,5 +96,5 @@
         .module('ITracker', ['ngRoute', 'ngCookies', 'ngToast', 'ui.bootstrap'])
         .constant('APP_CONFIGS', _appConfigs)
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngToastProvider', appConfig])
-        .run();
+        .run(['$rootScope', '$location', 'identityService', run]);
 }());
