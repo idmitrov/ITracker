@@ -44,10 +44,23 @@
          *  @name logout
          *  @desc Logout an existing user
          *
-         *  @return void
+         *  @returns void
          */
         service.logout = function() {
             credentialService.destroyCredentials();
+        };
+
+        /**
+         *  @name changePassword
+         *  @desc Change user password
+         *  @param {Object} changeCredentials
+         *
+         *  @returns {*|HttpPromise}
+         */
+        service.changePassword = function(changeCredentials) {
+            var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+            return requestService.post(_serviceEndpoint + 'ChangePassword', changeCredentials);
         };
 
         return service;

@@ -7,7 +7,7 @@
         directive.restrict = 'AE';
         directive.templateUrl = '/app/views/partials/identity/login-form.html';
         directive.replace = true;
-        directive.controller = 'HomeController';
+        directive.controller = 'IdentityController';
         directive.link = function(scope, element, attributes, controller) {
             scope.login = function(loginData, loginForm) {
                 if (loginForm.$valid) {
