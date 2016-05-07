@@ -7,7 +7,12 @@
         directive.restrict = 'AE';
         directive.templateUrl = '/app/views/partials/common/main-navigation.html';
         directive.replace = true;
-        directive.link = function(scope) {
+        directive.link = function(scope, element) {
+            scope.setAsActive = function() {
+                //element.find('.navbar-nav a').removeClass('active');
+                //element.addClass('active');
+            };
+
             scope.isLoggedIn = identityService.isLoggedIn;
 
 

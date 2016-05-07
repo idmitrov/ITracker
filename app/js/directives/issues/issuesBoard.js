@@ -10,6 +10,7 @@
         directive.link = function(scope) {
             function getIssuesSuccessHandler(successData) {
                 scope.myIssues = successData;
+                scope.totalPages = successData.TotalPages;
                 console.log(scope.myIssues);
             }
 

@@ -27,4 +27,60 @@
             </tr>
         </tbody>
     </table>
+
+    <!--<uib-pagination-->
+            <!--ng-change="pageChanged(currentPage)"-->
+            <!--total-items="totalPages"-->
+            <!--ng-model="currentPage"-->
+            <!--items-per-page="5"-->
+            <!--max-size="5"-->
+            <!--class="pagination-sm"-->
+            <!--boundary-links="true"-->
+            <!--direction-links="true"-->
+            <!--rotate="true"-->
+            <!--force-ellipses = "true"-->
+            <!--first-text="<<"-->
+            <!--previous-text="<"-->
+            <!--next-text=">"-->
+            <!--last-text=">>">-->
+    <!--</uib-pagination>-->
+
+    <uib-pagination
+            boundary-links="true"
+            direction-links="true"
+            rotate="false"
+            total-items="totalItems"
+            ng-model="currentPage"
+            items-per-page="size"
+            max-size="5"
+            class="pagination-sm"
+            ng-change="pageChanged (currentPage)"
+            first-text="<<"
+            previous-text="<"
+            next-text=">"
+            last-text=">>">
+    </uib-pagination>
+
+
+    <!--<nav>-->
+        <!--<ul class="pagination">-->
+            <!--<li>-->
+                <!--<a href="#" aria-label="Previous">-->
+                    <!--<span aria-hidden="true">&laquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<a href="#">1</a>-->
+            <!--</li>-->
+            <!--<li><a href="#">2</a></li>-->
+            <!--<li><a href="#">3</a></li>-->
+            <!--<li><a href="#">4</a></li>-->
+            <!--<li><a href="#">5</a></li>-->
+            <!--<li>-->
+                <!--<a href="#" aria-label="Next">-->
+                    <!--<span aria-hidden="true">&raquo;</span>-->
+                <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</nav>-->
 </div>

@@ -69,8 +69,13 @@
         $routeProvider
             .when('/', {
                 controller: 'HomeController',
-                templateUrl: 'app/views/home.html',
+                templateUrl: '/app/views/home.html',
                 controllerAs: 'home'
+            })
+            .when('/projects', {
+                controller: 'ProjectsController',
+                templateUrl: '/app/views/projects.html',
+                controllerAs: 'projects'
             })
             .otherwise({
                 redirectTo: '/'
@@ -80,7 +85,7 @@
     }
 
     angular
-        .module('ITracker', ['ngRoute', 'ngCookies', 'ngToast'])
+        .module('ITracker', ['ngRoute', 'ngCookies', 'ngToast', 'ui.bootstrap'])
         .constant('APP_CONFIGS', _appConfigs)
         .config(['$routeProvider', '$locationProvider', '$httpProvider', 'ngToastProvider', appConfig])
         .run();
