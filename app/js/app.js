@@ -117,7 +117,7 @@
             })
             .when('/projects/:id', {
                 controller: 'ProjectsController',
-                templateUrl: '/app/views/projects.html',
+                templateUrl: '/app/views/partials/projects/project-detail.html',
                 controllerAs: 'project'
             })
             .when('/issues/:id', {
