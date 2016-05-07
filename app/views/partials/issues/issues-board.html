@@ -22,7 +22,7 @@
                     <a href="/projects/{{issue.Project.Id}}" title="{{issue.Project.Name}}">{{issue.Project.Name}}</a>
                 </td>
                 <td>
-                    <p class="text text-warning">{{issue.DueDate}}</p>
+                    <p class="text text-warning">{{issue.DueDate | date:'dd-MMM-yyyy HH:mm:ss a'}}</p>
                 </td>
             </tr>
         </tbody>
