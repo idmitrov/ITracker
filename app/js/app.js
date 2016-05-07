@@ -115,6 +115,16 @@
                 templateUrl: '/app/views/projects.html',
                 controllerAs: 'projects'
             })
+            .when('/projects/:id', {
+                controller: 'ProjectsController',
+                templateUrl: '/app/views/projects.html',
+                controllerAs: 'project'
+            })
+            .when('/issues/:id', {
+                controller: 'ProjectsController',
+                templateUrl: '/app/views/partials/issues/issue-detail.html',
+                controllerAs: 'project'
+            })
             .otherwise({
                 redirectTo: '/'
             });
