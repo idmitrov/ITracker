@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function issuesBoard(issuesService) {
+    function issuesBoard(credentialService, issuesService, $http) {
         var directive = {};
 
         directive.restrict = 'AE';
@@ -9,10 +9,19 @@
         directive.templateUrl = '/app/views/partials/issues/issues-board.html';
         directive.link = function(scope) {
             function getIssuesSuccessHandler(successData) {
-                console.log(successData);
+                scope.myIssues = successData;
+                console.log(scope.myIssues);
             }
 
-            scope.myIssues = issuesService.getMyIssues()
+            function getMyIssues() {
+                var token = credentialService.getCredentials().access_token;
+
+                $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+                return issuesService.getMyIssues();
+            }
+
+            scope.myIssues = getMyIssues()
                 .then(getIssuesSuccessHandler);
         };
 
@@ -21,5 +30,5 @@
 
     angular
         .module('ITracker')
-        .directive('issuesBoard', ['issuesService', issuesBoard]);
+        .directive('issuesBoard', ['credentialService', 'issuesService', '$http', issuesBoard]);
 } ());

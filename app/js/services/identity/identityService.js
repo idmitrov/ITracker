@@ -3,7 +3,7 @@
 
     function IdentityService(credentialService, requestService, APP_CONFIGS) {
         var service = {},
-            _serviceEndpoint = APP_CONFIGS.service.baseUrl + 'account/';
+            _serviceEndpoint = APP_CONFIGS.service.baseUrl + 'api/account/';
 
         /**
          *  @name isLoggedIn
@@ -26,7 +26,7 @@
             var headers = { 'Content-Type': 'application/x-www-form-urlencoded' },
                 credentials =  'grant_type=password&username=' + loginCredentials.email +'&password=' + loginCredentials.password;
 
-            return requestService.post(APP_CONFIGS.service.baseUrl + 'token', credentials, headers);
+            return requestService.post(APP_CONFIGS.service.baseUrl + 'api/token', credentials, headers);
         };
 
         /**

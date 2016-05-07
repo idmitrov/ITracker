@@ -4,7 +4,7 @@
     var _appConfigs = {
         appName: 'ITracker',
         service: {
-            baseUrl: 'http://softuni-issue-tracker.azurewebsites.net/api/'
+            baseUrl: 'http://softuni-issue-tracker.azurewebsites.net/'
         }
     };
 

@@ -26,7 +26,7 @@
          * @returns {*|HttpPromise}
          */
         service.getMyIssues = function() {
-            return requestService.post(_serviceEndpoint + 'me/orderBy=' + service.orderType);
+            return requestService.get(_serviceEndpoint + 'me?orderBy=' + service.orderType + '&pageSize=2&pageNumber=1');
         };
 
         return service;

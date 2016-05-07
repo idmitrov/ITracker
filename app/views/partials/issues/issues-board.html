@@ -1,7 +1,30 @@
-<div>
+<div class="col-xs-6">
     <h3>Issues</h3>
 
-    <ul ng-repeat="issue in myIssues">
-        <li>{{issue}}</li>
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Project</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody ng-repeat="issue in this.myIssues.Issues">
+            <tr>
+                <td>
+                    {{issue.Title}}
+                </td>
+                <td>
+                    {{issue.Description}}
+                </td>
+                <td>
+                    {{issue.Project.Name}}
+                </td>
+                <td>
+                    {{issue.DueDate}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
