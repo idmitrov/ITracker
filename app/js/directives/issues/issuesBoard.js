@@ -2,7 +2,8 @@
     "use strict";
 
     function issuesBoard(issuesService) {
-        var directive = {};
+        var directive = {},
+            _defaultPage = 1;
 
         directive.restrict = 'AE';
         directive.replace = true;
@@ -11,10 +12,17 @@
             function getIssuesSuccessHandler(successData) {
                 scope.myIssues = successData;
                 scope.totalPages = successData.TotalPages;
+                scope.totalItems = successData.TotalCount;
             }
 
-            scope.currentPage = 1;
-            issuesService.getMyIssues(scope.currentPage)
+            scope.getIssues = function(currentPage) {
+                console.log(currentPage);
+                currentPage = currentPage || _defaultPage;
+                issuesService.getMyIssues(currentPage)
+                    .then(getIssuesSuccessHandler);
+            };
+
+            scope.myIssues = issuesService.getMyIssues(_defaultPage)
                 .then(getIssuesSuccessHandler);
         };
 
