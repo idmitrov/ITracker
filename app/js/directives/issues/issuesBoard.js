@@ -15,9 +15,8 @@
             }
 
             function getMyIssues() {
-                var token = credentialService.getCredentials().access_token;
+                //var token = credentialService.getCredentials().access_token;
 
-                $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
                 return issuesService.getMyIssues(1);
             }
