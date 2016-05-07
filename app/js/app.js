@@ -106,9 +106,9 @@
 
         $routeProvider
             .when('/', {
-                controller: 'HomeController',
+                controller: 'IdentityController',
                 templateUrl: '/app/views/home.html',
-                controllerAs: 'home'
+                controllerAs: 'identity'
             })
             .when('/projects', {
                 controller: 'ProjectsController',
@@ -124,6 +124,11 @@
                 controller: 'ProjectsController',
                 templateUrl: '/app/views/partials/issues/issue-detail.html',
                 controllerAs: 'project'
+            })
+            .when('/profile/password', {
+                controller: 'IdentityController',
+                templateUrl: '/app/views/credentials.html',
+                controllerAs: 'identity'
             })
             .otherwise({
                 redirectTo: '/'

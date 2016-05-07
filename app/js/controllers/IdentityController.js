@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function HomeController(identityService, credentialService, ngToast) {
+    function IdentityController(identityService, credentialService, ngToast) {
         var controller = this,
             _defaultActiveForm = 'login';
 
@@ -42,5 +42,5 @@
 
     angular
         .module('ITracker')
-        .controller('HomeController', ['identityService', 'credentialService', 'ngToast', HomeController]);
+        .controller('IdentityController', ['identityService', 'credentialService', 'ngToast', IdentityController]);
 } ());

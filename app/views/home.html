@@ -1,14 +1,14 @@
-<div ng-if="!home.isLoggedIn()">
+<div ng-if="!identity.isLoggedIn()">
     <h2>Welcome</h2>
 
-    <button class="btn btn-primary" ng-click="home.toggleActiveForm('login')">Login</button>
-    <button class="btn btn-success" ng-click="home.toggleActiveForm('register')">Register</button>
+    <button class="btn btn-primary" ng-click="identity.toggleActiveForm('login')">Login</button>
+    <button class="btn btn-success" ng-click="identity.toggleActiveForm('register')">Register</button>
 
-    <div ng-show="home.isActiveForm('login')" login-form></div>
-    <div ng-show="home.isActiveForm('register')" register-form></div>
+    <div ng-show="identity.isActiveForm('login')" login-form></div>
+    <div ng-show="identity.isActiveForm('register')" register-form></div>
 </div>
 
-<div ng-if="home.isLoggedIn()">
+<div ng-if="identity.isLoggedIn()">
     <h2>Dashboard</h2>
 
     <div issues-board></div>
