@@ -36,6 +36,10 @@
             return requestService.get(query);
         };
 
+        service.getIssueById = function(id) {
+            return requestService.get(_serviceEndpoint + id);
+        };
+
         return service;
     }
 

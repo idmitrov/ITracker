@@ -121,9 +121,9 @@
                 controllerAs: 'project'
             })
             .when('/issues/:id', {
-                controller: 'ProjectsController',
+                controller: 'IssueController',
                 templateUrl: '/app/views/partials/issues/issue-detail.html',
-                controllerAs: 'project'
+                controllerAs: 'issue'
             })
             .when('/profile/password', {
                 controller: 'IdentityController',

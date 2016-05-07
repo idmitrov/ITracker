@@ -1,1 +1,16 @@
-<h2>Issue Detail</h2>
+<div class="col-md-6">
+    <p><span class="text-success">Description: </span>{{issue.issueDetails.Description}}</p>
+    <p><span class="text-success">Issue Key: </span>{{issue.issueDetails.IssueKey}}</p>
+    <p><span class="text-success">Project: </span>{{issue.issueDetails.Project.Name}}</p>
+    <p><span class="text-success">Author: </span>{{issue.issueDetails.Author.Username}}</p>
+    <p><span class="text-success">Assignee: </span>{{issue.issueDetails.Assignee.Username}}</p>
+    <p><span class="text-success">Due Date: </span>{{issue.issueDetails.DueDate | date:'yyyy-MM-dd HH:mm' }}</p>
+    <p><span class="text-success">Priority: </span>{{issue.issueDetails.Priority.Name}}</p>
+    <p><span class="text-success">Labels: </span>
+        <span ng-repeat="label in issue.issueDetails.Labels">
+            <span class="label label-default marginRight1">{{label.Name}} </span></span> </p>
+
+    <p><span class="text-success">Status: </span>{{issue.issueDetails.Status.Name}}</p>
+
+
+</div>
