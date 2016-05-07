@@ -58,8 +58,6 @@
          *  @returns {*|HttpPromise}
          */
         service.changePassword = function(changeCredentials) {
-            var headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
-
             return requestService.post(_serviceEndpoint + 'ChangePassword', changeCredentials);
         };
 

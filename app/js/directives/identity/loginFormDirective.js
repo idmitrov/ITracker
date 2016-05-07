@@ -13,7 +13,7 @@
                 if (loginForm.$valid) {
                     controller.login(loginData);
                 } else {
-                    ngToast.danger('There is a problem with your request');
+                    ngToast.danger('There is something wrong with your request');
                 }
             };
         };
