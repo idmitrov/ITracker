@@ -25,8 +25,15 @@
          *
          * @returns {*|HttpPromise}
          */
-        service.getMyIssues = function() {
-            return requestService.get(_serviceEndpoint + 'me?orderBy=' + service.orderType + '&pageSize=2&pageNumber=1');
+        service.getMyIssues = function(pageNumber, pageSize) {
+            var query = _serviceEndpoint + 'me?';
+
+            pageSize = pageSize || 5;
+            query += 'orderBy=' + service.orderType;
+            query += '&pageSize=' + pageSize;
+            query += '&pageNumber=' + pageNumber;
+
+            return requestService.get(query);
         };
 
         return service;

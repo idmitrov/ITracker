@@ -18,7 +18,7 @@
 
                 $http.defaults.headers.common['Authorization'] = 'Bearer ' + token;
 
-                return issuesService.getMyIssues();
+                return issuesService.getMyIssues(1);
             }
 
             scope.myIssues = getMyIssues()
