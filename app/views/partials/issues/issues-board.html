@@ -10,19 +10,19 @@
                 <th>Date</th>
             </tr>
         </thead>
-        <tbody ng-repeat="issue in this.myIssues.Issues">
+        <tbody ng-repeat="issue in myIssues.Issues">
             <tr>
                 <td>
-                    {{issue.Title}}
+                    <a href="/issues/{{issue.Id}}" title="{{issue.Title}}">{{issue.Title}}</a>
                 </td>
                 <td>
-                    {{issue.Description}}
+                    <p class="text text-muted">{{issue.Description}}</p>
                 </td>
                 <td>
-                    {{issue.Project.Name}}
+                    <a href="/projects/{{issue.Project.Id}}" title="{{issue.Project.Name}}">{{issue.Project.Name}}</a>
                 </td>
                 <td>
-                    {{issue.DueDate}}
+                    <p class="text text-warning">{{issue.DueDate}}</p>
                 </td>
             </tr>
         </tbody>
