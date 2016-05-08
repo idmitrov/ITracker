@@ -6,11 +6,14 @@
 
         function getProjectSuccessHandler(successData) {
             controller.projectDetail = successData;
-            console.log(successData);
         }
 
-        projectsService.getProjectById($routeParams.id)
-            .then(getProjectSuccessHandler);
+        if ($routeParams.id) {
+            projectsService.getProjectById($routeParams.id)
+                .then(getProjectSuccessHandler);
+        } else {
+            projectsService.getAll();
+        }
     }
 
     angular
