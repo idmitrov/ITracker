@@ -1,1 +1,27 @@
-<h2>Project Detail</h2>
+<div class="panel panel-body">
+    <h2>{{project.projectDetail.Name}}</h2>
+
+    <div class="container-fluid">
+        <p>
+            <span class="text text-info">Description: </span>{{project.projectDetail.Description}}
+        </p>
+        <p>
+            <span class="text text-info">Project Key: </span>{{project.projectDetail.ProjectKey}}
+        </p>
+        <p>
+            <span class="text text-info">Project Leader: </span>{{project.projectDetail.Lead.Username}}
+        </p>
+        <p>
+            <div class="text text-info">Labels: </div>
+            <span ng-repeat="label in project.projectDetail.Labels">
+                <span class="label label-default marginRight1">{{label.Name}} </span>
+            </span>
+        </p>
+        <p>
+            <div class="text text-info">Priorities: </div>
+            <span ng-repeat="priority in project.projectDetail.Priorities">
+                <span class="label label-default marginRight1">{{priority.Name}} </span>
+            </span>
+        </p>
+    </div>
+</div>
