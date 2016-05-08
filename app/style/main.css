@@ -6,4 +6,9 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0; }
 
+.label {
+  margin: 0 5px; }
+  .label:first-of-type {
+    margin-left: 0; }
+
 /*# sourceMappingURL=main.css.map */
