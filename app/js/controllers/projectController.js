@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    function ProjectsController($routeParams, projectsService) {
+    function projectController($routeParams, projectsService) {
         var controller = this;
 
         function getProjectSuccessHandler(successData) {
@@ -18,5 +18,5 @@
 
     angular
         .module('ITracker')
-        .controller('ProjectsController', ['$routeParams', 'projectsService', ProjectsController]);
+        .controller('ProjectController', ['$routeParams', 'projectsService', projectController]);
 } ());

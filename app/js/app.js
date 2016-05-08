@@ -111,12 +111,12 @@
                 controllerAs: 'identity'
             })
             .when('/projects', {
-                controller: 'ProjectsController',
+                controller: 'ProjectController',
                 templateUrl: '/app/views/projects.html',
                 controllerAs: 'projects'
             })
             .when('/projects/:id', {
-                controller: 'ProjectsController',
+                controller: 'ProjectController',
                 templateUrl: '/app/views/partials/projects/project-detail.html',
                 controllerAs: 'project'
             })
